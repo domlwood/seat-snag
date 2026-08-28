@@ -1,6 +1,5 @@
 package com.seat.snag.event;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -74,6 +73,6 @@ class Event {
 
   @Override
   public String toString() {
-    return "Employee{" + "id=" + this.id + ", name='" + this.name + '\'' + ", role='" + this.venue + '\'' + '}';
+    return "Event{" + "id=" + this.id + ", name='" + this.name + '\'' + ", venue='" + this.venue + '\'' + '}';
   }
 }
