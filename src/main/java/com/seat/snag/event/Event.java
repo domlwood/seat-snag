@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-class Event {
+public class Event {
     
   private @Id
   @GeneratedValue Long id;
