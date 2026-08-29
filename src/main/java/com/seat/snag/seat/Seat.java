@@ -15,11 +15,11 @@ public class Seat {
     private Integer section;
     private Integer row;
     private Integer seatNumber;
-    private String status;
+    private SeatStatus status;
 
     Seat() {}
 
-    public Seat(Event event, Integer section, Integer row, Integer seatNumber, String status) {
+    public Seat(Event event, Integer section, Integer row, Integer seatNumber, SeatStatus status) {
         this.event = event;
         this.section = section;
         this.row = row;
@@ -43,7 +43,11 @@ public class Seat {
         return this.seatNumber;
     }
 
-    public String getStatus() {
+    public SeatStatus getStatus() {
         return this.status;
+    }
+
+    public SeatStatus setStatus(SeatStatus status) {
+        this.status = status;
     }
 }

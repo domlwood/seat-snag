@@ -20,8 +20,8 @@ class SeatSeeder {
 
         return args -> {
             List<Event> events = eventRepository.findAll();
-            log.info("Preloading " + seatRepository.save(new Seat(events.get(0), 2, 2, 2, "coop")));
-            log.info("Preloading " + seatRepository.save(new Seat(events.get(1), 2, 2, 2, "coop")));
+            log.info("Preloading " + seatRepository.save(new Seat(events.get(0), 2, 2, 2, SeatStatus.AVAILABLE)));
+            log.info("Preloading " + seatRepository.save(new Seat(events.get(1), 2, 2, 2, SeatStatus.HELD)));
         };
     }
 }
