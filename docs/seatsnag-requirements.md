@@ -43,10 +43,10 @@ Don't relitigate these mid-build — they're chosen on purpose:
 - A reservation on an `AVAILABLE` seat sets it to `HELD` and creates a `PENDING` reservation
 
 **Acceptance Criteria**
-- [ ] Given an event with seats, `GET /events/{id}/seats` returns all seats with current status
-- [ ] Given an `AVAILABLE` seat, `POST /reservations` succeeds and the seat becomes `HELD`
-- [ ] Given a seat that is already `HELD` or `BOOKED`, `POST /reservations` returns 409 Conflict
-- [ ] Given a `PENDING` reservation, `DELETE /reservations/{id}` releases the seat back to `AVAILABLE`
+- [x] Given an event with seats, `GET /events/{id}/seats` returns all seats with current status
+- [x] Given an `AVAILABLE` seat, `POST /reservations` succeeds and the seat becomes `HELD`
+- [x] Given a seat that is already `HELD` or `BOOKED`, `POST /reservations` returns 409 Conflict
+- [x] Given a `PENDING` reservation, `DELETE /reservations/{id}` releases the seat back to `AVAILABLE`
 - [ ] All entities and relationships are covered by Flyway migrations, not `ddl-auto`
 
 **Definition of Done:** you can walk through the full happy path via Postman/curl and the DB state is always consistent — but you have *not yet* tested concurrent requests.
