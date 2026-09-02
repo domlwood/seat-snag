@@ -2,8 +2,10 @@ package com.seat.snag.reservation;
 
 import com.seat.snag.reservation.dto.ReservationRequest;
 import com.seat.snag.seat.Seat;
+import com.seat.snag.seat.SeatNotFoundException;
 import com.seat.snag.seat.SeatRepository;
 import com.seat.snag.seat.SeatStatus;
+import jakarta.transaction.Transactional;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -18,10 +20,10 @@ public class ReservationService {
         this. reservationRepository = reservationRepository;
     }
 
+    @Transactional
     public Reservation createReservation(@NonNull ReservationRequest reservationRequest) {
         Long seatId = reservationRequest.seatId();
-
-        Seat seat = seatRepository.findById(seatId).orElseThrow(() -> new RuntimeException());
+        Seat seat = seatRepository.findById(seatId).orElseThrow(() -> new SeatNotFoundException(seatId));
 
         if(seat.getStatus() == SeatStatus.AVAILABLE) {
             seat.setStatus(SeatStatus.HELD);
@@ -36,6 +38,16 @@ public class ReservationService {
             return reservationRepository.save(reservation);
         }
 
-        throw new RuntimeException();
+        throw new ReservationSeatNotAvailableException(seatId);
+    }
+
+    @Transactional
+    public void deleteReservation(@NonNull Long id) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new ReservationNotFoundException(id));
+
+        Seat seat = reservation.getSeat();
+        seat.setStatus(SeatStatus.AVAILABLE);
+
+        reservationRepository.deleteById(id);
     }
 }

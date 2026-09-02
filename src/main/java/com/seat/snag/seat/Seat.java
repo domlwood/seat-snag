@@ -15,6 +15,7 @@ public class Seat {
     private Integer section;
     private Integer row;
     private Integer seatNumber;
+    @Enumerated(EnumType.STRING)
     private SeatStatus status;
 
     Seat() {}
@@ -25,6 +26,10 @@ public class Seat {
         this.row = row;
         this.seatNumber = seatNumber;
         this.status = status;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public Event getEvent() {
@@ -47,7 +52,7 @@ public class Seat {
         return this.status;
     }
 
-    public SeatStatus setStatus(SeatStatus status) {
+    public void setStatus(SeatStatus status) {
         this.status = status;
     }
 }

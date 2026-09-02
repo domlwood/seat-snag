@@ -1,9 +1,10 @@
 package com.seat.snag.reservation;
 
 import com.seat.snag.reservation.dto.ReservationRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.hibernate.annotations.Parameter;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ReservationController {
@@ -15,8 +16,19 @@ public class ReservationController {
         this.service = service;
     }
 
+    @GetMapping("/reservations")
+    List<Reservation> all() {
+        return repository.findAll();
+    }
+
     @PostMapping("/reservations")
     Reservation create(@RequestBody ReservationRequest reservationRequest) {
         return service.createReservation(reservationRequest);
+    }
+
+    @DeleteMapping("/reservations/{id}")
+    void delete(@PathVariable Long id) {
+        service.deleteReservation(id);
+        return;
     }
 }

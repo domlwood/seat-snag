@@ -27,4 +27,28 @@ public class Reservation {
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public Seat getSeat() {
+        return this.seat;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public ReservationStatus getStatus() {
+        return this.status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public LocalDateTime getExpiresAt() {
+        return this.expiresAt;
+    }
 }
